@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d2301f8d-8483-47bd-af4b-ae29f9a5f9b3" name="Changes" comment="package creation">
-      <change afterPath="$PROJECT_DIR$/src/dataAccess/webDataAccess/SingletonHttpConnection.java" afterDir="false" />
+    <list default="true" id="d2301f8d-8483-47bd-af4b-ae29f9a5f9b3" name="Changes" comment="starting Singleton creation Https request">
+      <change afterPath="$PROJECT_DIR$/src/Principal.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dataAccess/webDataAccess/HttpConnection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataAccess/webDataAccess/SingletonHttpConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataAccess/webDataAccess/SingletonHttpConnection.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +40,20 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RunManager">
+    <configuration name="Principal" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Principal" />
+      <module name="FarmingTrackerGW2" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Principal" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -54,7 +70,14 @@
       <option name="project" value="LOCAL" />
       <updated>1650447141450</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="starting Singleton creation Https request">
+      <created>1650612213046</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1650612213046</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -76,6 +99,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="package creation" />
-    <option name="LAST_COMMIT_MESSAGE" value="package creation" />
+    <MESSAGE value="starting Singleton creation Https request" />
+    <option name="LAST_COMMIT_MESSAGE" value="starting Singleton creation Https request" />
   </component>
 </project>
