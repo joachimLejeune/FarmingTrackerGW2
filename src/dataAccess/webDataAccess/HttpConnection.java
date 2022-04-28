@@ -5,11 +5,12 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 
+
 public class HttpConnection {
     public HttpURLConnection connection;
 
-    public HttpConnection(){
-        connection = SingletonHttpConnection.getConnection();
+    public HttpConnection(String characterName, String accessToken){
+        connection = SingletonHttpConnection.getConnection(characterName,accessToken);
     }
 
     public int connectionStatus(){
@@ -30,9 +31,12 @@ public class HttpConnection {
             in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             while((inputLine = in.readLine())!=null){
                 content.append(inputLine);
-                content.append("\n");
+//                content.append("\n");
             }
             in.close();
+
+
+
             return content.toString();
         } catch (IOException e) {
             throw new RuntimeException(e);

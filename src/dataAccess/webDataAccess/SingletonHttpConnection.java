@@ -11,9 +11,7 @@ public class SingletonHttpConnection {
     private static HttpURLConnection connection;
 
 
-    public static HttpURLConnection getConnection(){
-        String characterName = "Khnor";
-        String accessToken = "CB0274D5-E8E5-0340-AB96-12CB0AFA2345BF90ECFC-A46A-4B0D-8420-BEEF7E47EF17";
+    public static HttpURLConnection getConnection(String characterName, String accessToken){
         String urlString =  "https://api.guildwars2.com/v2/characters/"+characterName+"/inventory?access_token="+accessToken;
         URL url = null;
         try {
