@@ -2,9 +2,16 @@ package dataAccess.webDataAccess;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
+import Model.Item;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class HttpConnection {
     public HttpURLConnection connection;
@@ -24,23 +31,43 @@ public class HttpConnection {
     }
 
     public String showInfos(){
-        BufferedReader in = null;
-        String inputLine;
-        StringBuilder content = new StringBuilder();
+        ArrayList<Item> items = new ArrayList<Item>();
+
         try {
-            in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-            while((inputLine = in.readLine())!=null){
-                content.append(inputLine);
-//                content.append("\n");
+            InputStream inputStream = connection.getInputStream();
+            BufferedReader bR = new BufferedReader(  new InputStreamReader(inputStream));
+            String line = "";
+
+            StringBuilder responseStrBuilder = new StringBuilder();
+            while((line =  bR.readLine()) != null){
+
+                responseStrBuilder.append(line);
             }
-            in.close();
+            inputStream.close();
 
+            JSONObject result= new JSONObject(responseStrBuilder.toString());
 
+            System.out.println(result.getJSONArray("bags"));
 
-            return content.toString();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+            JSONArray jsonArray = result.getJSONArray("bags");
+            System.out.println(jsonArray.get(0));
+//            // Pour tous les objets on récupère les infos
+//            for (int i = 0; i < array.length(); i++) {
+//                // On récupère un objet JSON du tableau
+//                JSONObject obj = new JSONObject(array.getString(i));
+//                // On fait le lien Personne - Objet JSON
+//                Personne personne = new Personne();
+//                personne.setNom(obj.getString("nom"));
+//                personne.setPrenom(obj.getString("prenom"));
+//                // On ajoute la personne à la liste
+//                personnes.add(personne);
+//            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
+        // On retourne la liste des personnes
+//        return personnes;
+        return "null";
     }
 }
