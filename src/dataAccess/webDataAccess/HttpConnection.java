@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import Model.Inventory;
 import Model.Item;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -51,6 +52,8 @@ public class HttpConnection {
 
             JSONArray jsonArray = result.getJSONArray("bags");
             System.out.println(jsonArray.get(0));
+            JSONObject firstInventory = (JSONObject) jsonArray.get(0);
+            System.out.println(firstInventory);
 //            // Pour tous les objets on récupère les infos
 //            for (int i = 0; i < array.length(); i++) {
 //                // On récupère un objet JSON du tableau
