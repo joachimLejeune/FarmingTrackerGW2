@@ -10,6 +10,12 @@ public class Principal {
 //        System.out.println(connection.showInfos());
 
         HttpManager manager = new HttpManager();
-        System.out.println(manager.extractData());
+        if(!manager.extractingData()){
+            System.out.println("Données extraites de l'API");
+        }
+        else{
+            System.out.println("Erreur dans la récupération de l'inventaire");
+        }
+
     }
 }

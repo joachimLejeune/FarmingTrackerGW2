@@ -17,11 +17,11 @@ import org.json.JSONObject;
 public class HttpConnection {
     public HttpURLConnection connection;
 
-    public HttpConnection(String characterName, String accessToken){
-        connection = SingletonHttpConnection.getConnection(characterName,accessToken);
+    public HttpConnection(String characterName, String accessToken) {
+        connection = SingletonHttpConnection.getConnection(characterName, accessToken);
     }
 
-    public int connectionStatus(){
+    public int connectionStatus() {
         Integer connectionCode = -1;
         try {
             connectionCode = connection.getResponseCode();
@@ -31,46 +31,50 @@ public class HttpConnection {
         return connectionCode;
     }
 
-    public String showInfos(){
-        ArrayList<Item> items = new ArrayList<Item>();
-
+    public Inventory GetInventory() {
+//        ArrayList<Item> items = new ArrayList<Item>();
+        Inventory inventory = new Inventory();
         try {
             InputStream inputStream = connection.getInputStream();
-            BufferedReader bR = new BufferedReader(  new InputStreamReader(inputStream));
+            BufferedReader bR = new BufferedReader(new InputStreamReader(inputStream));
             String line = "";
 
             StringBuilder responseStrBuilder = new StringBuilder();
-            while((line =  bR.readLine()) != null){
+            while ((line = bR.readLine()) != null) {
 
                 responseStrBuilder.append(line);
             }
             inputStream.close();
 
-            JSONObject result= new JSONObject(responseStrBuilder.toString());
+            JSONObject result = new JSONObject(responseStrBuilder.toString());
 
-            System.out.println(result.getJSONArray("bags"));
+//            System.out.println(result.getJSONArray("bags"));
 
-            JSONArray jsonArray = result.getJSONArray("bags");
-            System.out.println(jsonArray.get(0));
-            JSONObject firstInventory = (JSONObject) jsonArray.get(0);
-            System.out.println(firstInventory);
-//            // Pour tous les objets on récupère les infos
-//            for (int i = 0; i < array.length(); i++) {
-//                // On récupère un objet JSON du tableau
-//                JSONObject obj = new JSONObject(array.getString(i));
-//                // On fait le lien Personne - Objet JSON
-//                Personne personne = new Personne();
-//                personne.setNom(obj.getString("nom"));
-//                personne.setPrenom(obj.getString("prenom"));
-//                // On ajoute la personne à la liste
-//                personnes.add(personne);
-//            }
+            JSONArray jsonArray = result.getJSONArray("bags"); // l'ensemble de mes sacs
+//            System.out.println(jsonArray.get(0));
+            JSONObject firstInventory = (JSONObject) jsonArray.get(0); // le premier sac
+//            System.out.println(firstInventory);
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        // On retourne la liste des personnes
+//            System.out.println(firstInventory.get("inventory")); // le contenu du premier sac
+            JSONArray contenu = firstInventory.getJSONArray("inventory"); // on reconvertit en Array JSON
+//            System.out.println(contenu);
+            // Pour tous les objets on récupère les infos
+            for (int i = 0; i < contenu.length(); i++) {
+                System.out.println(contenu.get(i));
+                // On récupère un objet JSON du tableau
+                JSONObject obj = (JSONObject) contenu.get(i);
+                // On fait le lien Item - Objet JSON
+                Item item = new Item((Integer) obj.get("id"), (Integer) obj.get("count"));
+                // On ajoute la personne à la liste
+                inventory.AddItem(item);
+                System.out.println(inventory.GetItem(i).ToString());
+//                System.out.println(obj.get("id"));
+            }
+            // On retourne la liste des personnes
 //        return personnes;
-        return "null";
+            return inventory;
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

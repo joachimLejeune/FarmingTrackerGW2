@@ -8,4 +8,7 @@ public class Item {
         this.idItem = idItem;
         this.countItem = countItem;
     }
+    public String ToString(){
+        return "id" + idItem + " : " + countItem;
+    }
 }

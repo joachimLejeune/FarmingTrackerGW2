@@ -1,5 +1,6 @@
 package business;
 
+import Model.Inventory;
 import dataAccess.webDataAccess.HttpConnection;
 
 public class HttpManager {
@@ -11,10 +12,11 @@ public class HttpManager {
         this.httpManager = new HttpConnection(characterName,access_token);
     }
 
-    public String extractData(){
-        String data = httpManager.showInfos();
+    public boolean extractingData(){
+        Inventory data = httpManager.GetInventory();
 
-        return data;
+
+        return data.IsEmpty();
     }
 
 
