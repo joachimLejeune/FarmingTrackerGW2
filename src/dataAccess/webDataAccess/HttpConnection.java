@@ -5,9 +5,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 import Model.Inventory;
 import Model.Item;
@@ -60,15 +57,20 @@ public class HttpConnection {
 //            System.out.println(contenu);
             // Pour tous les objets on récupère les infos
             for (int i = 0; i < contenu.length(); i++) {
-                System.out.println(contenu.get(i));
+//                System.out.println(contenu.get(i));
                 // On récupère un objet JSON du tableau
-                JSONObject obj = (JSONObject) contenu.get(i);
-                // On fait le lien Item - Objet JSON
-                Item item = new Item((Integer) obj.get("id"), (Integer) obj.get("count"));
-                // On ajoute la personne à la liste
-                inventory.AddItem(item);
-                System.out.println(inventory.GetItem(i).ToString());
-//                System.out.println(obj.get("id"));
+                Object obj = contenu.get(i);
+                if(!obj.equals(null)){
+                    JSONObject jsonObj = (JSONObject) obj;
+                    System.out.println(jsonObj);
+//                     On fait le lien Item - Objet JSON
+                    Item item = new Item((Integer) jsonObj.get("id"), (Integer) jsonObj.get("count"));
+                    // On ajoute la personne à la liste
+                    inventory.AddItem(item);
+                    System.out.println(inventory.GetItem(i).ToString());
+    //                System.out.println(obj.get("id"));
+                }
+//
             }
             // On retourne la liste des personnes
 //        return personnes;
